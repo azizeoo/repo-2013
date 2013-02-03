@@ -7,5 +7,68 @@
 	<name>java2wsdl</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cxf.version>2.0.9</cxf.version>
+		<junit.version>4.11</junit.version>
+		<maven-war-plugin.version>2.3</maven-war-plugin.version>
+		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
 	</properties>
+	
+	<build>
+		<!--Repertoire source -->
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<!-- Inclure fichiers .properties et .xml du repertoire src -->
+				<directory>src</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+<!-- 			<plugin> -->
+<!-- 				Plugin Maven pour creer archive WAR -->
+<!-- 				<artifactId>maven-war-plugin</artifactId> -->
+<!-- 				<version>${maven-war-plugin.version}</version> -->
+<!-- 				<configuration> -->
+<!-- 					repertoire application web -->
+<!-- 					<webappDirectory>src/main/webapp</webappDirectory> -->
+<!-- 					<webResources> -->
+<!-- 					</webResources> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
+			<plugin>
+				<!-- Plugin pour compilation code Java -->
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<!-- Java version for compiling the source code -->
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>java2wsdl</finalName>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<!-- Dependences Apache JAX-WS CXF pour WAR et Client JAX-WS -->
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Dependences Apache JAX-WS CXF pour Client JAX-WS -->
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+	</dependencies>
 </project>
